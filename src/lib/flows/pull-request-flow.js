@@ -21,10 +21,12 @@ async function start(
   core.startGroup(
     `[Pull Request Flow] Checking out ${context.config.github.groupProject} and its dependencies`
   );
+  console.log("PULL REQUEST1");
   const projectTriggeringJob = context.config.github.inputs.startingProject
     ? context.config.github.inputs.startingProject
     : context.config.github.repository;
 
+  console.log("PULL REQUEST2");
   const definitionTree = await getTreeForProject(
     context.config.github.inputs.definitionFile,
     projectTriggeringJob,
@@ -36,18 +38,24 @@ async function start(
       token: context.token
     }
   );
+  console.log("PULL REQUEST3");
+
   const nodeChain = await parentChainFromNode(definitionTree);
   logger.info(
     `Tree for project ${projectTriggeringJob}. Dependencies: ${nodeChain.map(
       node => "\n" + node.project
     )}`
   );
+  console.log("PULL REQUEST4");
+
   const checkoutInfo = await checkoutDefinitionTree(
     context,
     nodeChain,
     "pr",
     options
   );
+  console.log("PULL REQUEST5");
+
   core.endGroup();
 
   core.startGroup(`[Pull Request Flow] Checkout Summary...`);
