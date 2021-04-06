@@ -293,6 +293,7 @@ async function getCheckoutInfo(context, node, nodeTriggeringTheJob) {
     node.mapping,
     context.config.github.targetBranch
   );
+  console.log("getCheckoutInfo", node.project, mapping);
   const sourceGroup = context.config.github.sourceGroup;
   const sourceBranch = context.config.github.sourceBranch;
   const targetGroup = node.repo.group;

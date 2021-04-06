@@ -5,6 +5,7 @@ function getDefinitionFile() {
 }
 
 function getStartingProject() {
+  console.log("getStartingProject", core.getInput("starting-project"));
   return core.getInput("starting-project");
 }
 
