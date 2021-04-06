@@ -11064,10 +11064,10 @@ function overrideProperties(target, source, merge = false) {
 function mergeElements(target, source, key) {
   
   const treatedTarget =
-  typeof target === "string" ? [...target.split("\n")] : [...target];
+  typeof target === "string" ? [...target.split("\n")] : Array.isArray(target) ? [...target] : {...target};
   console.log("mergeElements BEFORE", source, key)
   const treatedSource =
-    typeof source === "string" ? [...source.split("\n")] : [...source];
+    typeof source === "string" ? [...source.split("\n")] : Array.isArray(source) ? [...source] : {...source};
     console.log("mergeElements AFTER")
 
   return [...treatedTarget, ...treatedSource];
