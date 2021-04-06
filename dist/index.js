@@ -2009,15 +2009,19 @@ function lookForProject(tree, project) {
  * @param {Object} buildConfiguration the build configuration directly read from the yaml file
  */
 function dependencyListToTree(dependencyList, buildConfiguration) {
+  console.log("dependencyListToTree1")
   const map = dependencyList.reduce((map, dependency, i) => {
     map[dependency.project] = { index: i, node: undefined };
     dependency.children = [];
     dependency.parents = [];
     return map;
   }, {});
+  console.log("dependencyListToTree2", map)
 
   return dependencyList.reduce((roots, node) => {
+    console.log("dependencyListToTree3", node.project)
     validateNode(node);
+    console.log("dependencyListToTree4", node.project)
     map[node.project].node = {
       ...node,
       repo: {
@@ -2026,7 +2030,7 @@ function dependencyListToTree(dependencyList, buildConfiguration) {
       },
       ...treatProject(node.project, buildConfiguration)
     };
-
+    console.log("dependencyListToTree5", node.project)
     if (node.dependencies && node.dependencies.length > 0) {
       node.dependencies.forEach(dependency => {
         if ([null, undefined].includes(map[dependency.project])) {
