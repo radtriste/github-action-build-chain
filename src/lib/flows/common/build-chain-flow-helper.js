@@ -451,6 +451,7 @@ async function getForkedProjectName(octokit, owner, project, wantedOwner) {
  * @param {Object} definitionFile the definition file path or URL
  */
 async function getPlaceHolders(context, definitionFile) {
+  console.log("GET PLACEHOLDERS1");
   if (definitionFile.startsWith("http") && definitionFile.includes("${")) {
     const placeHolderSource = {
       GROUP: context.config.github.sourceGroup,
@@ -480,12 +481,15 @@ async function getPlaceHolders(context, definitionFile) {
             `Definition file ${definitionFile} does not exist for any of these cases: ${sourceUrl}, ${targetSourceUrl} or ${targetUrl}`
           );
         } else {
+          console.log("GET PLACEHOLDERS2");
           return placeHoldersTarget;
         }
       } else {
+        console.log("GET PLACEHOLDERS3");
         return placeHoldersTargetSource;
       }
     } else {
+      console.log("GET PLACEHOLDERS4");
       return placeHolderSource;
     }
   }

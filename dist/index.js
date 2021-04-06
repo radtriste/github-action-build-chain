@@ -1958,7 +1958,12 @@ async function getTree(
   file,
   options = { urlPlaceHolders: {}, token: undefined }
 ) {
+  console.log("getTree1");
+
   const definition = await readDefinitionFile(file, options);
+  console.log("getTree2", definition);
+  console.log("getTree3", dependencyListToTree(definition.dependencies, definition));
+
   return dependencyListToTree(definition.dependencies, definition);
 }
 
@@ -1983,8 +1988,11 @@ async function getTreeForProject(
  * @param {String} project the project name
  */
 function lookForProject(tree, project) {
+  console.log("lookForProject1", project)
   if (tree && tree.length > 0) {
     const leaf = tree.find(leaf => project === leaf.project);
+    console.log("lookForProject2", leaf)
+
     return leaf
       ? leaf
       : tree
@@ -8527,6 +8535,7 @@ async function getForkedProjectName(octokit, owner, project, wantedOwner) {
  * @param {Object} definitionFile the definition file path or URL
  */
 async function getPlaceHolders(context, definitionFile) {
+  console.log("GET PLACEHOLDERS1");
   if (definitionFile.startsWith("http") && definitionFile.includes("${")) {
     const placeHolderSource = {
       GROUP: context.config.github.sourceGroup,
@@ -8556,12 +8565,15 @@ async function getPlaceHolders(context, definitionFile) {
             `Definition file ${definitionFile} does not exist for any of these cases: ${sourceUrl}, ${targetSourceUrl} or ${targetUrl}`
           );
         } else {
+          console.log("GET PLACEHOLDERS2");
           return placeHoldersTarget;
         }
       } else {
+        console.log("GET PLACEHOLDERS3");
         return placeHoldersTargetSource;
       }
     } else {
+      console.log("GET PLACEHOLDERS4");
       return placeHolderSource;
     }
   }
