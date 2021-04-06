@@ -11065,7 +11065,7 @@ function mergeElements(target, source) {
   
   const treatedTarget =
   typeof target === "string" ? [...target.split("\n")] : [...target];
-  console.log("mergeElements BEFORE")
+  console.log("mergeElements BEFORE", source)
   const treatedSource =
     typeof source === "string" ? [...source.split("\n")] : [...source];
     console.log("mergeElements AFTER")
