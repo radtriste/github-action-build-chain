@@ -2019,6 +2019,7 @@ function dependencyListToTree(dependencyList, buildConfiguration) {
   return dependencyList.reduce((roots, node) => {
     validateNode(node);
     console.log("dependencyListToTree4", node.project, map[node.project])
+    console.log("dependencyListToTree5", node.project, treatProject(node.project, buildConfiguration))
     map[node.project].node = {
       ...node,
       repo: {
