@@ -11061,11 +11061,11 @@ function overrideProperties(target, source, merge = false) {
   return targetClone;
 }
 
-function mergeElements(target, source) {
+function mergeElements(target, source, key) {
   
   const treatedTarget =
   typeof target === "string" ? [...target.split("\n")] : [...target];
-  console.log("mergeElements BEFORE", source)
+  console.log("mergeElements BEFORE", source, key)
   const treatedSource =
     typeof source === "string" ? [...source.split("\n")] : [...source];
     console.log("mergeElements AFTER")
