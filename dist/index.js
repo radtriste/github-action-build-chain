@@ -439,12 +439,14 @@ async function getEvent(octokit, eventUrl) {
 
   const m = eventUrl.match(GITHUB_URL_REGEXP);
   if (m && m[3] === "pull") {
-    logger.debug("Getting PR data...");
+    logger.info("Getting PR data...");
     const { data: pull_request } = await octokit.pulls.get({
       owner: m[1],
       repo: m[2],
       pull_number: m[4]
     });
+    logger.info("Getting PR data END...");
+
     event = {
       action: "opened",
       ref: `refs/pull/${m[4]}/merge`,
@@ -8367,6 +8369,7 @@ async function getCheckoutInfo(context, node, nodeTriggeringTheJob) {
     node.mapping,
     context.config.github.targetBranch
   );
+  console.log("getCheckoutInfo", node.project, mapping);
   const sourceGroup = context.config.github.sourceGroup;
   const sourceBranch = context.config.github.sourceBranch;
   const targetGroup = node.repo.group;
@@ -28348,6 +28351,7 @@ function getDefinitionFile() {
 }
 
 function getStartingProject() {
+  console.log("getStartingProject", core.getInput("starting-project"));
   return core.getInput("starting-project");
 }
 
