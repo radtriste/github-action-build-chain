@@ -11035,7 +11035,9 @@ function getBuild(project, buildConfiguration) {
  */
 function overrideProperties(target, source, merge = false) {
   const targetClone = { ...target };
+  console.log("overrideProperties BEFORE")
   const sourceClone = { ...source };
+  console.log("overrideProperties AFTER")
   Object.entries(targetClone)
     .filter(([key]) => sourceClone[key])
     .forEach(([key, value]) => {
@@ -11060,10 +11062,14 @@ function overrideProperties(target, source, merge = false) {
 }
 
 function mergeElements(target, source) {
+  
   const treatedTarget =
-    typeof target === "string" ? [...target.split("\n")] : [...target];
+  typeof target === "string" ? [...target.split("\n")] : [...target];
+  console.log("mergeElements BEFORE")
   const treatedSource =
     typeof source === "string" ? [...source.split("\n")] : [...source];
+    console.log("mergeElements AFTER")
+
   return [...treatedTarget, ...treatedSource];
 }
 
