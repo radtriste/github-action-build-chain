@@ -1958,8 +1958,6 @@ async function getTree(
   file,
   options = { urlPlaceHolders: {}, token: undefined }
 ) {
-  console.log("getTree1");
-
   const definition = await readDefinitionFile(file, options);
   console.log("getTree2", definition);
   console.log("getTree3", dependencyListToTree(definition.dependencies, definition));
@@ -2009,7 +2007,7 @@ function lookForProject(tree, project) {
  * @param {Object} buildConfiguration the build configuration directly read from the yaml file
  */
 function dependencyListToTree(dependencyList, buildConfiguration) {
-  console.log("dependencyListToTree1")
+  console.log("dependencyListToTree1", dependencyList)
   const map = dependencyList.reduce((map, dependency, i) => {
     map[dependency.project] = { index: i, node: undefined };
     dependency.children = [];
@@ -25086,7 +25084,6 @@ async function start(
   core.startGroup(
     `[Pull Request Flow] Checking out ${context.config.github.groupProject} and its dependencies`
   );
-  console.log("PULL REQUEST1");
   const projectTriggeringJob = context.config.github.inputs.startingProject
     ? context.config.github.inputs.startingProject
     : context.config.github.repository;
