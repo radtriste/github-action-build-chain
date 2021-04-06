@@ -2019,9 +2019,8 @@ function dependencyListToTree(dependencyList, buildConfiguration) {
   console.log("dependencyListToTree2", map)
 
   return dependencyList.reduce((roots, node) => {
-    console.log("dependencyListToTree3", node.project)
     validateNode(node);
-    console.log("dependencyListToTree4", node.project)
+    console.log("dependencyListToTree4", node.project, map[node.project])
     map[node.project].node = {
       ...node,
       repo: {
@@ -2030,7 +2029,7 @@ function dependencyListToTree(dependencyList, buildConfiguration) {
       },
       ...treatProject(node.project, buildConfiguration)
     };
-    console.log("dependencyListToTree5", node.project)
+    // console.log("dependencyListToTree5", node.project)
     if (node.dependencies && node.dependencies.length > 0) {
       node.dependencies.forEach(dependency => {
         if ([null, undefined].includes(map[dependency.project])) {
