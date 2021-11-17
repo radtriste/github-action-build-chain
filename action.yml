@@ -20,6 +20,9 @@ inputs:
   annotations-prefix:
     description: "The prefix to identify the annotations for different jobs running for the same Action"
     required: false
+  folder:
+    description: "The prefix to identify the annotations for different jobs running for the same Action"
+    required: false
 runs:
   using: "node12"
   main: "dist/index.js"
